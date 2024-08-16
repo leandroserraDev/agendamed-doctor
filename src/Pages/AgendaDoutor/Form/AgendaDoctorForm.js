@@ -33,7 +33,7 @@ const[searchParams, setSearchParams] = useSearchParams();
 
           if(doctorID != null){
       
-            fetch(`https://localhost:7036/api/Doctor/${doctorID}/schedule/${specialityID}`)
+            fetch(`${process.env.REACT_APP_URI_API}/Doctor/${doctorID}/schedule/${specialityID}`)
          .then( response => {
             return response.json() 
          }

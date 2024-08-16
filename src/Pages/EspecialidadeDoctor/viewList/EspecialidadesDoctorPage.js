@@ -15,7 +15,7 @@ const goToNewEspecialidade = () =>
    });
     useEffect(() =>{
 
-        fetch(`https://localhost:7036/api/Doctor/${localStorage.getItem("id")}/speciality`)
+        fetch(`${process.env.REACT_APP_URI_API}/Doctor/${localStorage.getItem("id")}/speciality`)
      .then( response => {
         return response.json() 
      }

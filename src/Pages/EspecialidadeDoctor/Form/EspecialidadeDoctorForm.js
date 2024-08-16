@@ -38,7 +38,7 @@ export default function EspecialidadeDoctorForm() {
     "speciality":  parseInt(data.speciality),
     "doctorID": localStorage.getItem("id")
   };
-    fetch(`https://localhost:7036/api/Doctor/speciality`, {
+    fetch(`${process.env.REACT_APP_URI_API}/Doctor/speciality`, {
       method:  "POST",
       body: JSON.stringify(dataSend),
       headers: {

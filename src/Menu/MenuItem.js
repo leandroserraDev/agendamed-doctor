@@ -2,11 +2,14 @@ import '../input.css';
 import { IoHome, IoPeople  } from "react-icons/io5";
 import { RiCalendarScheduleFill } from "react-icons/ri";
 import { GrSchedule } from "react-icons/gr";
-
+import { IoPersonSharp } from 'react-icons/io5';
 
 
 function MenuItem(){
 
+    function Logout(){
+        localStorage.clear();
+    }
     return  (
         <div 
         className='flex flex-col  text-center'

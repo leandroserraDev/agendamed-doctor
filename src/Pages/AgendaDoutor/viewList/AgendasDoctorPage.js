@@ -16,7 +16,7 @@ const goToNewAgenda = () =>
    });
     useEffect(() =>{
 
-        fetch(`https://localhost:7036/api/Doctor/${localStorage.getItem("id")}/schedule`)
+        fetch(`${process.env.REACT_APP_URI_API}/Doctor/${localStorage.getItem("id")}/schedule`)
      .then( response => {
         return response.json() 
      }

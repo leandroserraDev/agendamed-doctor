@@ -14,7 +14,7 @@ function DoctorForms() {
   const idParameter = searchParams.get("id");
     if(idParameter != null){
 
-      fetch(`https://localhost:7036/api/Doctor/${idParameter}`)
+      fetch(`${process.env.REACT_APP_URI_API}/Doctor/${idParameter}`)
    .then( response => {
       return response.json() 
    }

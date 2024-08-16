@@ -16,7 +16,7 @@ const goToNewConsulta = () =>
    });
     useEffect(() =>{
 
-        fetch('https://localhost:7036/api/doctor/appointments',{
+        fetch(`${process.env.REACT_APP_URI_API}/doctor/appointments`,{
           headers: {
          "Content-type": "application/json; charset=UTF-8",
           'Authorization': `Bearer ${localStorage.getItem("token")}`

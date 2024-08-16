@@ -6,7 +6,7 @@ export default function ItemTableEspecialidade({data}){
 
         function MudarStatus(){
    
-    fetch(`https://localhost:7036/api/Doctor/${data.doctorID}/speciality/${data.speciality}/mudarstatus`,{
+    fetch(`${process.env.REACT_APP_URI_API}/Doctor/${data.doctorID}/speciality/${data.speciality}/mudarstatus`,{
         method:"PATCH"
     })
     .then( response => {

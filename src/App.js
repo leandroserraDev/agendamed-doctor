@@ -7,6 +7,8 @@ import AgendasDoctorPage from './Pages/AgendaDoutor/viewList/AgendasDoctorPage.j
 import AgendaDoctorPage from './Pages/AgendaDoutor/Form/AgendaDoctorPage.js';
 import Login from './Pages/Auth/Login.js';
 import Home from './Pages/Home/Home.js';
+import ConsultasPage from'./Pages/Consultas/ConsultaView/ConsultasPage.js'
+import FormPage from'./Pages/Consultas/Form/FormPage.js';
 import {
   BrowserRouter,
   createBrowserRouter,
@@ -15,6 +17,7 @@ import {
   Routes,
 } from "react-router-dom";
 import PrivateRoutes from './Pages/Protected/PrivateRoutes.js';
+import AuthPage from './Pages/Auth/AuthPage.js';
 
 const router = createBrowserRouter([
   {
@@ -41,13 +44,21 @@ const router = createBrowserRouter([
       {
         path:'agenda/nova-agenda',
         element:<AgendaDoctorPage/>
+      },      {
+        path:"consultas",
+        element: <ConsultasPage/>
+      },
+      ,
+      {
+        path:"agendar-consulta",
+        element: <FormPage/>
       }
     ]
   },
   
   {
     path: 'auth',
-    element: <Login/>
+    element: <AuthPage/>
   }
   
 ]);

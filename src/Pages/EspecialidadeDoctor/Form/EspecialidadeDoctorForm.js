@@ -51,7 +51,7 @@ export default function EspecialidadeDoctorForm() {
   
   )
     .then(  data => {
-      // navigate({pathname:"/doctors"})
+      navigate({pathname:"/doctors"})
        return data;
   
     })

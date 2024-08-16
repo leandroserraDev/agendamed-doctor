@@ -26,10 +26,10 @@ export default function ItemTableEspecialidade({data}){
         <tbody>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {data.speciality}
+                  {data.description}
                 </th>
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  EM CONSTRUÇÃO
+                {data.description}
                 </th>
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {data.deleted? "Inativo": "Ativo"}

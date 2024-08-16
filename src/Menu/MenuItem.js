@@ -56,13 +56,13 @@ function MenuItem(){
 
         </div>
         <div className=' w-full hover:scale-105 duration-300' >
-        <a href='/agenda' className=' flex border-b-2 items-center '>
+        <a href='/consultas' className=' flex border-b-2 items-center '>
             <div className=' ml-4 '>
             <RiCalendarScheduleFill className=''/>
             </div>
 
             <span className='w-full '>
-            Agendamentos
+            Consultas
             </span>
 
             

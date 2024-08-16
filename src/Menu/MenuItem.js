@@ -70,6 +70,21 @@ function MenuItem(){
         </a>
 
         </div>
+        <div className=' w-full hover:scale-105 duration-300' >
+        <a href='/' onClick={() =>Logout()} className=' flex border-b-2 items-center '>
+            <div className=' ml-4 '>
+            <IoPersonSharp className=''/>
+            </div>
+
+            <span className='w-full '>
+            Sair
+            </span>
+
+            
+
+        </a>
+
+        </div>
                
     
     </div>

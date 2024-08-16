@@ -26,19 +26,20 @@ function Login({data}){
         
         )
           .then(  data => {
-            var decodeToken = jwtDecode(data.data);
-            console.log(decodeToken);
 
-            if(decodeToken.role != "Doctor"){
-              setErrorAPI({message:[{id: 1, message: "Sem acesso"}]})
+            if(data.success){
+            var decodeToken = jwtDecode(data.data);
+
+              localStorage.setItem("token", data.data);
+              localStorage.setItem("id",decodeToken.sid);
+              localStorage.setItem("userName",decodeToken.name);
+              localStorage.setItem("email",decodeToken.email);
+              navigate({pathname:"/home"});
               return;
             }
+            setErrorAPI(data)
 
-            localStorage.setItem("token", data.data);
-            localStorage.setItem("id",decodeToken.sid);
-            localStorage.setItem("userName",decodeToken.name);
-            localStorage.setItem("email",decodeToken.email);
-            navigate({pathname:"/home"});
+    
         
           })
           .catch(error => console.error(error));
@@ -80,7 +81,7 @@ function Login({data}){
           {
             errorAPI.error && errorAPI.error.map((item,index)=>{
               return(
-                <li className=' h-[50px]  text-red-500' key={item.id}>
+                <li className=' h-[20px]  text-red-500' key={item.id}>
                   <span>
                     {item.message}
                   </span>

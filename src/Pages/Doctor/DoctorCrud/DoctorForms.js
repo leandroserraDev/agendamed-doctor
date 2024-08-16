@@ -33,12 +33,13 @@ function DoctorForms() {
 
 
   function submitData(data){
-    fetch(`https://localhost:7036/api/Doctor/${data.id !=  null? data.id:""}`, {
+    fetch(`${process.env.REACT_APP_URI_API}/Doctor/${data.id !=  null? data.id:""}`, {
       method: `${searchParams.get("id") != null ? "PUT" : "POST"}`,
       body: JSON.stringify(data),
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
+        "Content-type": "application/json; charset=UTF-8",
+         'Authorization': `Bearer ${localStorage.getItem("token")}`
+         }
     })
     .then( response => {
        return response.json() 

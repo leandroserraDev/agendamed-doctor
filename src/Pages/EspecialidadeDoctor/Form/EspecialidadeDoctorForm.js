@@ -10,6 +10,8 @@ export default function EspecialidadeDoctorForm() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [doctor, setDoctor] = useState();
 
+  const[errorAPI, setErrorAPI] = useState([]);
+
 //   useEffect(() =>{
 //   const idParameter = searchParams.get("id");
 //     if(idParameter != null){
@@ -42,8 +44,9 @@ export default function EspecialidadeDoctorForm() {
       method:  "POST",
       body: JSON.stringify(dataSend),
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
+        "Content-type": "application/json; charset=UTF-8",
+         'Authorization': `Bearer ${localStorage.getItem("token")}`
+         }
     })
     .then( response => {
        return response.json() 
@@ -51,8 +54,12 @@ export default function EspecialidadeDoctorForm() {
   
   )
     .then(  data => {
-      navigate({pathname:"/doctors"})
-       return data;
+
+      if(data.success){
+        navigate({pathname:"/especialidades/doctor"})
+        return data;
+      }
+      setErrorAPI(data)
   
     })
     .catch(error => console.error(error));
@@ -75,6 +82,17 @@ export default function EspecialidadeDoctorForm() {
       </ul>
 
       <input type="submit" />
+      {
+            errorAPI.error && errorAPI.error.map((item,index)=>{
+              return(
+                <li className=' h-[20px]  text-red-500' key={item.id}>
+                  <span>
+                    {item.message}
+                  </span>
+                  </li>
+              )
+            })
+          }
     </form>
     </div>
 

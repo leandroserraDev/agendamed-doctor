@@ -13,7 +13,11 @@ export default function ItemTableAgenda({data}){
         function MudarStatus(){
    
     fetch(`${process.env.REACT_APP_URI_API}/Doctor/${data.doctorID}/speciality/${data.speciality}/mudarstatus`,{
-        method:"PATCH"
+        method:"PATCH",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+             'Authorization': `Bearer ${localStorage.getItem("token")}`
+             }
     })
     .then( response => {
        return response.json() 

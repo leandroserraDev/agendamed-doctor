@@ -10,6 +10,7 @@ export default function AgendaDoctorForm() {
 
   const[especialidades, setEspecialidades] = useState([]);
   const[agenda, setAgenda] = useState([]);
+  const navigate = useNavigate();
 
   const defaultValues = {
     speciality:"1",
@@ -33,21 +34,26 @@ const[searchParams, setSearchParams] = useSearchParams();
 
           if(doctorID != null){
       
-            fetch(`${process.env.REACT_APP_URI_API}/Doctor/${doctorID}/schedule/${specialityID}`)
+            fetch(`${process.env.REACT_APP_URI_API}/Doctor/${doctorID}/schedule/${specialityID}`,{
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                 'Authorization': `Bearer ${localStorage.getItem("token")}`
+                 }
+            })
          .then( response => {
             return response.json() 
          }
        
         )
          .then(  data => {
-          setAgenda(data);
+          setAgenda(data.data);
           var scheduleAux=[];
-          if(data.schedule.length > 0){
-            console.log(data.schedule.length)
+          if(data.data.schedule.length > 0){
+            console.log(data.data.schedule.length)
             reset({
-              speciality:data.speciality,
+              speciality:data.data.speciality,
               doctorID: localStorage.getItem("id"),
-              schedule: data.schedule
+              schedule: data.data.schedule
             });
           }
          
@@ -55,7 +61,12 @@ const[searchParams, setSearchParams] = useSearchParams();
          .catch(error => console.error(error));
           }
       
-    fetch(`https://localhost:7036/api/Doctor/${localStorage.getItem("id")}/speciality`)
+    fetch(`${process.env.REACT_APP_URI_API}/Doctor/${localStorage.getItem("id")}/speciality`,{
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+         'Authorization': `Bearer ${localStorage.getItem("token")}`
+         }
+    })
     .then( response => {
        return response.json() 
     }
@@ -82,11 +93,12 @@ const[searchParams, setSearchParams] = useSearchParams();
 
     })
 
-    fetch(`https://localhost:7036/api/Doctor/schedule`, {
+    fetch(`${process.env.REACT_APP_URI_API}/Doctor/schedule`, {
       method:  "POST",
       body: JSON.stringify(data),
       headers: {
-        "Content-type": "application/json; charset=UTF-8"
+        "Content-type": "application/json; charset=UTF-8",
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
       }
     })
     .then( response => {
@@ -95,12 +107,15 @@ const[searchParams, setSearchParams] = useSearchParams();
   
   )
     .then(  data => {
-      // navigate({pathname:"/doctors"})
+      if(data.success){
+        navigate({pathname:"/agendas"})
+
        return data;
+
+      }
   
     })
     .catch(error => console.error(error));
-     console.log("data",data);
 
   }
 

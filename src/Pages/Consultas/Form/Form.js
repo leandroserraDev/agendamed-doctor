@@ -24,7 +24,12 @@ function Form(){
 
       if(searchParams.get("id") != null){
 
-        fetch(`${process.env.REACT_APP_URI_API}/patient/appointment/${searchParams.get("id")}`)
+        fetch(`${process.env.REACT_APP_URI_API}/patient/appointment/${searchParams.get("id")}`,{
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+             'Authorization': `Bearer ${localStorage.getItem("token")}`
+             }
+        })
         .then( response => {
            return response.json() 
         }
@@ -155,7 +160,12 @@ function Form(){
 
       if(getValue !=null){
 
-      fetch(`${process.env.REACT_APP_URI_API}/Doctor/speciality/${getValue.specialityID}`)
+      fetch(`${process.env.REACT_APP_URI_API}/Doctor/speciality/${getValue.specialityID}`,{
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+                  'Authorization': `Bearer ${localStorage.getItem("token")}`
+        }
+      })
       .then( response => {
          return response.json() 
       }
@@ -178,7 +188,10 @@ function Form(){
         doctorID: getValue.doctorID,
         specialityID: getValue.specialityID,
         data: getValue.data
-    }).toString())
+    },{     headers: {
+      "Content-type": "application/json; charset=UTF-8",
+              'Authorization': `Bearer ${localStorage.getItem("token")}`
+    }}).toString())
 
       .then( response => {
 

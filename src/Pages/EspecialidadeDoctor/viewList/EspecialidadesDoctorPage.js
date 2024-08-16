@@ -15,7 +15,12 @@ const goToNewEspecialidade = () =>
    });
     useEffect(() =>{
 
-        fetch(`${process.env.REACT_APP_URI_API}/Doctor/${localStorage.getItem("id")}/speciality`)
+        fetch(`${process.env.REACT_APP_URI_API}/Doctor/${localStorage.getItem("id")}/speciality`,{
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+             'Authorization': `Bearer ${localStorage.getItem("token")}`
+             }
+        })
      .then( response => {
         return response.json() 
      }
